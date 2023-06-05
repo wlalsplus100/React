@@ -28,11 +28,13 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: calc(100vh - 100px);
   justify-content: center;
 }
 
 .Container-a {
   width: 50%;
+  height: 50%;
 }
 
 .App-link {
@@ -41,12 +43,13 @@
 
 .moving-rotating-div {
   position: relative;
-  animation: moveRotate 2s infinite, Rotate 1ms infinite;
+  animation: moveRotate 2s infinite, Rotate 1ms infinite,
+    moveUpDown 500ms infinite;
 }
 
 .moving-div {
   position: relative;
-  animation: moveRotate 2s infinite;
+  animation: moveRotate 2s infinite, moveUpDown2 500ms infinite;
 }
 
 @keyframes moveRotate {
@@ -67,5 +70,29 @@
   }
   to {
     transform: rotate(180deg);
+  }
+}
+
+@keyframes moveUpDown {
+  0% {
+    top: calc(0% + 10px);
+  }
+  50% {
+    top: calc(100% - 400px);
+  }
+  100% {
+    top: calc(0% + 10px);
+  }
+}
+
+@keyframes moveUpDown2 {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: 100%;
+  }
+  100% {
+    top: 0;
   }
 }

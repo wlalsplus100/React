@@ -10,8 +10,8 @@ const MenuButton = ({ value }) => {
 
 const Container = styled.div`
   button {
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 50px;
     margin: 0 30px 0 30px;
     transition: 500ms;
   }

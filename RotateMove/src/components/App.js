@@ -10,11 +10,10 @@ function App() {
           <img className="App-logo moving-rotating-div" src="사진2.jpg"></img>
           <img className="App-logo moving-rotating-div" src="사진3.jpg"></img>
         </div>
-        <br />
         <div className="Container moving-div Container-a">
           <MenuButton value={"야호"} />
           <MenuButton value={"정말"} />
-          <MenuButton value={"대단해!!!!!!!"} />
+          <MenuButton value={"대단해"} />
         </div>
       </header>
     </div>
