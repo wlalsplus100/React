@@ -44,7 +44,7 @@
 .moving-rotating-div {
   position: relative;
   animation: moveRotate 2s infinite, Rotate 1ms infinite,
-    moveUpDown 500ms infinite;
+    changeColor 3s infinite, moveUpDown 500ms infinite;
 }
 
 .moving-div {
@@ -94,5 +94,17 @@
   }
   100% {
     top: 0;
+  }
+}
+
+@keyframes changeColor {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(180deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
   }
 }
