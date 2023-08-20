@@ -1,7 +1,17 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import "./App.css";
 import Timer from "./components/timer";
 import Element from "./components/testele";
+import Page from "./components/Page";
+import { ThemeContext } from "./context/ThemeContext";
+import { UserContenxt } from "./context/UserContext";
+import Box from "./components/Box";
 
 // function App() {
 //   const [showTimer, setShowTimer] = useState(false);
@@ -125,23 +135,166 @@ import Element from "./components/testele";
 //   );
 // };
 
+// const App = () => {
+//   const inputRef = useRef();
+
+//   useEffect(() => {
+//     // console.log(inputRef);
+//     inputRef.current.focus();
+//   }, []);
+
+//   const login = () => {
+//     alert(`환영합니다 ${inputRef.current.value}!`);
+//     inputRef.current.focus();
+//   };
+
+//   return (
+//     <div>
+//       <input ref={inputRef} type="text" placeholder="username" />
+//       <button onClick={login}>로그인</button>
+//     </div>
+//   );
+// };
+
+// const App = () => {
+//   const [isDark, setIsDark] = useState(false);
+//   console.log(isDark);
+//   return (
+//     <UserContenxt.Provider value={"사용자"}>
+//       <ThemeContext.Provider value={{ isDark, setIsDark }}>
+//         <Page></Page>;
+//       </ThemeContext.Provider>
+//     </UserContenxt.Provider>
+//   );
+// };
+
+// const hardCalculate = (number) => {
+//   console.log("어려운 계산!");
+//   for (let i = 0; i < 999999999; i++) {}
+//   return number + 10000;
+// };
+
+// const easyCalculate = (number) => {
+//   console.log("쉬운 계산");
+//   return number + 1;
+// };
+
+// const App = () => {
+//   const [hardNumber, setHardNumber] = useState(1);
+//   const [easyNumber, setEasyNumber] = useState(1);
+
+//   // const hardSum = hardCalculate(hardNumber);
+//   const hardSum = useMemo(() => {
+//     return hardCalculate(hardNumber);
+//   }, [hardNumber]);
+//   const easySum = easyCalculate(easyNumber);
+
+//   return (
+//     <div>
+//       <h3>어려운 계산기</h3>
+//       <input
+//         type="number"
+//         value={hardNumber}
+//         onChange={(e) => setHardNumber(parseInt(e.target.value))}
+//       />
+//       <span> + 10000 = {hardSum}</span>
+
+//       <h3>쉬운 계산기</h3>
+//       <input
+//         type="number"
+//         value={easyNumber}
+//         onChange={(e) => setEasyNumber(parseInt(e.target.value))}
+//       />
+//       <span> + 1 = {easySum}</span>
+//     </div>
+//   );
+// };
+
+// const App = () => {
+//   const [number, setNumber] = useState(0);
+//   const [isKorea, setIsKorea] = useState(true);
+
+//   const location = useMemo(() => {
+//     return { country: isKorea ? "한국" : "외국" };
+//   }, [isKorea]);
+
+//   useEffect(() => {
+//     console.log("useEffect 호출");
+//   }, [location]);
+
+//   return (
+//     <>
+//       <h2>하루에 몇끼 먹어요?</h2>
+//       <input
+//         type="number"
+//         value={number}
+//         onChange={(e) => setNumber(e.target.value)}
+//       />
+//       <hr />
+//       <h2>어느 나라에 있어요?</h2>
+//       <p>나라 : {location.country}</p>
+//       <button onClick={() => setIsKorea(!isKorea)}>비행기 타자</button>
+//     </>
+//   );
+// };
+
+// const App = () => {
+//   const [number, setNumber] = useState(0);
+//   const [toggle, setToggle] = useState(true);
+
+//   const someFunction = useCallback(() => {
+//     console.log(`someFunc: number: ${number}`);
+//     return;
+//   }, [number]);
+
+//   useEffect(() => {
+//     console.log("someFunction이 변경됨");
+//   }, [someFunction]);
+//   return (
+//     <>
+//       <input
+//         type="number"
+//         value={number}
+//         onChange={(e) => setNumber(e.target.value)}
+//       />
+//       <button onClick={() => setToggle(!toggle)}>{toggle.toString()}</button>
+//       <br />
+//       <button onClick={someFunction}>Call someFunc</button>
+//     </>
+//   );
+// };
+
 const App = () => {
-  const inputRef = useRef();
+  const [size, setSizes] = useState(100);
+  const [isDark, setIsDark] = useState(false);
 
-  useEffect(() => {
-    // console.log(inputRef);
-    inputRef.current.focus();
-  }, []);
-
-  const login = () => {
-    alert(`환영합니다 ${inputRef.current.value}!`);
-    inputRef.current.focus();
-  };
+  const createBoxStyle = useCallback(() => {
+    return {
+      backgroundColor: "pink",
+      width: `${size}px`,
+      height: `${size}px`,
+    };
+  }, [size]);
 
   return (
-    <div>
-      <input ref={inputRef} type="text" placeholder="username" />
-      <button onClick={login}>로그인</button>
+    <div
+      style={{
+        background: isDark ? "black" : "white",
+      }}
+    >
+      <input
+        type="number"
+        value={size}
+        onChange={(e) => setSizes(e.target.value)}
+      />
+      <button
+        onClick={() => {
+          setIsDark(!isDark);
+        }}
+      >
+        Dark
+      </button>
+      <Box createBoxStyle={createBoxStyle} />
     </div>
   );
 };
