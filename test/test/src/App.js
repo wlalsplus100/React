@@ -12,6 +12,7 @@ import Page from "./components/Page";
 import { ThemeContext } from "./context/ThemeContext";
 import { UserContenxt } from "./context/UserContext";
 import Box from "./components/Box";
+import ScrollingComponent from "./components/Scrollingcomponent";
 
 // function App() {
 //   const [showTimer, setShowTimer] = useState(false);
@@ -264,38 +265,46 @@ import Box from "./components/Box";
 //   );
 // };
 
+// const App = () => {
+//   const [size, setSizes] = useState(100);
+//   const [isDark, setIsDark] = useState(false);
+
+//   const createBoxStyle = useCallback(() => {
+//     return {
+//       backgroundColor: "pink",
+//       width: `${size}px`,
+//       height: `${size}px`,
+//     };
+//   }, [size]);
+
+//   return (
+//     <div
+//       style={{
+//         background: isDark ? "black" : "white",
+//       }}
+//     >
+//       <input
+//         type="number"
+//         value={size}
+//         onChange={(e) => setSizes(e.target.value)}
+//       />
+//       <button
+//         onClick={() => {
+//           setIsDark(!isDark);
+//         }}
+//       >
+//         Dark
+//       </button>
+//       <Box createBoxStyle={createBoxStyle} />
+//     </div>
+//   );
+// };
+
 const App = () => {
-  const [size, setSizes] = useState(100);
-  const [isDark, setIsDark] = useState(false);
-
-  const createBoxStyle = useCallback(() => {
-    return {
-      backgroundColor: "pink",
-      width: `${size}px`,
-      height: `${size}px`,
-    };
-  }, [size]);
-
   return (
-    <div
-      style={{
-        background: isDark ? "black" : "white",
-      }}
-    >
-      <input
-        type="number"
-        value={size}
-        onChange={(e) => setSizes(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          setIsDark(!isDark);
-        }}
-      >
-        Dark
-      </button>
-      <Box createBoxStyle={createBoxStyle} />
-    </div>
+    <>
+      <ScrollingComponent />
+    </>
   );
 };
 
