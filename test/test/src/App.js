@@ -4,6 +4,7 @@ import React, {
   useRef,
   useMemo,
   useCallback,
+  useReducer,
 } from "react";
 import "./App.css";
 import Timer from "./components/timer";
@@ -13,6 +14,9 @@ import { ThemeContext } from "./context/ThemeContext";
 import { UserContenxt } from "./context/UserContext";
 import Box from "./components/Box";
 import ScrollingComponent from "./components/Scrollingcomponent";
+import AnimatedLine from "./components/AnimationLine";
+import Student from "./components/Students";
+import ModalMain from "./components/modalMain";
 
 // function App() {
 //   const [showTimer, setShowTimer] = useState(false);
@@ -300,10 +304,164 @@ import ScrollingComponent from "./components/Scrollingcomponent";
 //   );
 // };
 
+// const App = () => {
+//   return (
+//     <>
+//       <ScrollingComponent />
+//     </>
+//   );
+// };
+
+// const App = () => {
+//   return (
+//     <div>
+//       <AnimatedLine />
+//     </div>
+//   );
+// };
+
+// reducer - 업데이트하는 역할
+//dispatch - 업데이트를 위한 요구
+//action - 요구의 내용
+
+// const ACTION_TYPES = {
+//   deposit: "deposit",
+//   withdraw: "withdraw",
+// };
+
+// const reducer = (state, action) => {
+//   switch (action.type) {
+//     case ACTION_TYPES.deposit:
+//       return state + action.payload;
+//     case ACTION_TYPES.withdraw:
+//       return state - action.payload;
+//     default:
+//       return state;
+//   }
+// };
+
+// const App = () => {
+//   const [number, setNumber] = useState(0);
+//   const [money, dispatch] = useReducer(reducer, 0);
+
+//   return (
+//     <>
+//       <h2>useReducer 은행에 오신 것을 환영합니다</h2>
+//       <p>잔고: {money}원</p>
+//       <input
+//         type="number"
+//         value={number}
+//         onChange={(e) => setNumber(parseInt(e.target.value))}
+//         step="1000"
+//       />
+//       <button
+//         onClick={() => {
+//           dispatch({ type: ACTION_TYPES.deposit, payload: number });
+//         }}
+//       >
+//         예금
+//       </button>
+//       <button
+//         onClick={() => {
+//           dispatch({ type: ACTION_TYPES.withdraw, payload: number });
+//         }}
+//       >
+//         출금
+//       </button>
+//     </>
+//   );
+// };
+
+// const App = () => {
+//   const [number, setNumber] = useState(0);
+//   const [money, setMoney] = useState(0);
+//   return (
+//     <>
+//       <h2>useReducer 은행에 오신것을 환영합니다</h2>
+//       <p>잔고: {money}원</p>
+//       <input
+//         type="number"
+//         value={number}
+//         onChange={(e) => {
+//           setNumber(e.target.value);
+//         }}
+//         step={1000}
+//       />
+//       <button onClick={() => setMoney(money + parseInt(number))}>예금</button>
+//       <button onClick={() => setMoney(money - parseInt(number))}>출금</button>
+//     </>
+//   );
+// };
+
+// const reducer = (state, action) => {
+//   switch (action.type) {
+//     case "add-student":
+//       const name = action.payload.name;
+//       const newStudent = {
+//         id: Date.now(),
+//         name,
+//         isHere: false,
+//       };
+//       return {
+//         count: state.count + 1,
+//         students: [...state.students, newStudent],
+//       };
+//     case "delete-student":
+//       return {
+//         count: state.count - 1,
+//         students: state.students.filter(
+//           (student) => student.id !== action.payload.id
+//         ),
+//       };
+//     default:
+//       return state;
+//   }
+// };
+
+// const initialState = {
+//   count: 0,
+//   students: [],
+// };
+
+// const App = () => {
+//   const [name, setName] = useState("");
+//   const [studentsInfo, dispatch] = useReducer(reducer, initialState);
+
+//   return (
+//     <>
+//       <h2>출석부</h2>
+//       <p>총 학생 수 : {studentsInfo.count}</p>
+//       <input
+//         type="text"
+//         placeholder="이름을 입력해주세요"
+//         value={name}
+//         onChange={(e) => setName(e.target.value)}
+//       />
+//       <button
+//         onClick={() => {
+//           dispatch({ type: "add-student", payload: { name } });
+//         }}
+//       >
+//         추가
+//       </button>
+//       {studentsInfo.students.map((student) => {
+//         return (
+//           <Student
+//             name={student.name}
+//             key={student.id}
+//             dispatch={dispatch}
+//             id={student.id}
+//           />
+//         );
+//       })}
+//     </>
+//   );
+// };
+
 const App = () => {
   return (
     <>
-      <ScrollingComponent />
+      <ModalMain />
     </>
   );
 };
